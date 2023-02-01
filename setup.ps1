@@ -1,27 +1,41 @@
-function main {
+function Invoke-WaifuWare {
     Write-Host "Checking if nim is installed..."
     if (-not $env:PATH.contains("nim") -and -not $env:PATH.Contains("nimble")) {
         Write-Host "Nim is not installed. Installing..."
         Install-Nim
-    } else {
-        if (-not $env:PATH.contains("Git\cmd")) {
-            Write-Host "Git is not installed. Installing..."
-            Install-Git
+    }
+    if (-not $env:PATH.contains("Git\cmd")) {
+        Write-Host "Git is not installed. Installing..."
+        Install-Git
+    }
+    if (-not $env:PATH.Contains("\nodejs\")) {
+        Write-Host "Node is not installed. Installing..."
+        Install-Node
+    }
+    git clone https://github.com/TaxMachine/waifuware-self-the-return
+    Set-Location -Path ".\waifuware-self-the-return"
+    npm install
+    Clear-Host
+    Write-Host 
+    $token = Read-Host -Prompt "Enter your Discord token -> "
+    $prefix = Read-Host -Prompt "Enter the prefix you wanna use -> "
+    $config = @"
+{
+    "token": "$token",
+    "prefix": "$prefix"
+}
+"@
+    New-Item -Path ".\config.json" -ItemType File -Value $config
+    Set-Location -Path ".\nim-modules"
+    Get-ChildItem | ForEach-Object {
+        if ($_.FullName.EndsWith(".nim")) {
+            nim c $_.FullName
         }
-        if (-not $env:PATH.Contains("\nodejs\")) {
-            Write-Host "Node is not installed. Installing..."
-            Install-Node
+    }
+    Get-ChildItem -Path ".\bin" | ForEach-Object {
+        if ($_.FullName.EndsWith(".exe")) {
+            strip.exe $_.FullName
         }
-        git clone https://github.com/TaxMachine/waifuware-self-the-return
-        Set-Location -Path ".\waifuware-self-the-return"
-        npm install
-        Set-Location -Path ".\nim-modules"
-        nim c createWebhook.nim
-        nim c getWebhooks.nim
-        nim c sendWebhook.nim
-        strip.exe bin/createWebhook.exe
-        strip.exe bin/getWebhooks.exe
-        strip.exe bin/sendWebhook.exe
     }
 }
 
@@ -58,3 +72,5 @@ function Install-Nim {
 function Install-Scoop {
     Invoke-RestMethod -uri "get.scoop.sh" | Invoke-Expression
 }
+
+Invoke-WaifuWare
