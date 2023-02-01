@@ -1,4 +1,4 @@
-const {webhooks} = require('../functions/getWebhooks'), {createWebhook, sendWebhook} = require('../functions/request')
+const {createWebhook, sendWebhook} = require('../functions/request')
 const sleep = ms => new Promise(resovle => setTimeout(resovle, ms));
 
 module.exports = {

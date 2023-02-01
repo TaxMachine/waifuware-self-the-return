@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/TaxMachine/waifuware-self-the-return#readme",
   "dependencies": {
+    "gradient-string": "^2.0.2",
+    "terminal-kit": "^3.0.0",
     "v11-discord.js": "^11.5.8"
   }
 }
