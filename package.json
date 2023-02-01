@@ -1,0 +1,22 @@
+{
+  "name": "waifuware",
+  "version": "1.0.0",
+  "description": "discord selfbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaxMachine/waifuware-self-the-return.git"
+  },
+  "author": "TaxMachine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TaxMachine/waifuware-self-the-return/issues"
+  },
+  "homepage": "https://github.com/TaxMachine/waifuware-self-the-return#readme",
+  "dependencies": {
+    "v11-discord.js": "^11.5.8"
+  }
+}
