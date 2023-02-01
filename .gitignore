@@ -1,3 +1,4 @@
 config.json
 nim-modules/bin
 node_modules
+package-lock.json
